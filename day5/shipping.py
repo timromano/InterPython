@@ -23,14 +23,19 @@ class ShippingContainer:
     def create_with_items(cls, owner_code, *items):
         return cls(owner_code, contents=list(items))
 
+    @staticmethod
+    def _make_bic_code(owner_code, serial):
+        return iso6346.create(owner_code=owner_code, serial=str(serial).zfill(6))
+
+
     def __init__(self, owner_code, contents):
         self._owner_code = owner_code
         self._contents = contents
-        self.serial = ShippingContainer._get_next_serial()
+        #self.serial = ShippingContainer._get_next_serial()
+        self.bic = ShippingContainer._make_bic_code(owner_code=owner_code,
+                                                    serial= ShippingContainer._get_next_serial() )
 
 
-    def bic(self):
-        return iso6346.create()
 
 
 
