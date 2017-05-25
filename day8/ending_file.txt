@@ -1,0 +1,6 @@
+You should
+read this
+text...
+END
+But not read
+this part.
